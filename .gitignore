@@ -15,6 +15,14 @@
 #env variables 
 .env
 
+#.vscode
+/server/.vscode
+/src/.vscode
+
+#.history
+/server/.history
+/src/.history
+
 # production
 /build
 

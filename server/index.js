@@ -13,6 +13,8 @@ const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
 const port = process.env.PORT || 3000;
 const db = process.env.MONGO_URL;
+//bring routes
+import blogRoutes from "./routes/blog.routes";
 //db database
 mongoose
   .connect(db, {
@@ -37,9 +39,7 @@ nextApp.prepare().then(() => {
   app.use(cookieParser());
   //Routes
 
-  app.get("/api", (req, res) => {
-    res.json({ time: Date().toString() });
-  });
+  app.use("/api", blogRoutes);
 
   app.get("*", (req, res) => {
     return handle(req, res);
