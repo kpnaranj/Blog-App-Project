@@ -15,6 +15,8 @@ const port = process.env.PORT || 3000;
 const db = process.env.MONGO_URL;
 //bring routes
 import blogRoutes from "./routes/blog.routes";
+import authRoutes from "./routes/auth.routes";
+
 //db database
 mongoose
   .connect(db, {
@@ -38,13 +40,14 @@ nextApp.prepare().then(() => {
   );
   app.use(cookieParser());
   //Routes
-
   app.use("/api", blogRoutes);
+  app.use("/api", authRoutes);
 
+  //Render the website
   app.get("*", (req, res) => {
     return handle(req, res);
   });
-
+  //Listen port
   app.listen(port, (err) => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
