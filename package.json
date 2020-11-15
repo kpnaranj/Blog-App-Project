@@ -22,6 +22,7 @@
     "next": "10.0.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "shortid": "^2.2.16",
     "slugify": "^1.4.6",
     "string-strip-html": "^6.3.0"
   },

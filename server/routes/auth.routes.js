@@ -1,6 +1,6 @@
 import express from "express";
 //external dependecies
-import { signup } from "../controllers/auth.controller";
+import signup from "../controllers/auth.controller";
 //validators
 //They both are like one
 //1. validate conditions of signin
