@@ -1,4 +1,4 @@
-const signup = (req, res) => {
+export function signup(req, res) {
   //take name, email and password from the request
   //Split name, email and password
   const { name, email, password } = req.body;
@@ -6,6 +6,4 @@ const signup = (req, res) => {
     //resolve as user that will contain these values
     user: { name, email, password },
   });
-};
-
-export default { signup };
+}
