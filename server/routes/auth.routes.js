@@ -1,6 +1,6 @@
 import express from "express";
 //external dependecies
-import signup from "../controllers/auth.controller";
+import { signup, signin, signout, requireSignin} from "../controllers/auth.controller";
 //validators
 //They both are like one
 //1. validate conditions of signin
@@ -11,5 +11,6 @@ import { runValidation } from "../validators";
 const router = express.Router();
 
 router.post("/signup", userSignupValidator, runValidation, signup);
-
+router.get("/signin", userSigninValidator, runValidation, signin);
+router.get('/signout', signout)
 export default router;

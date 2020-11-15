@@ -1,6 +1,10 @@
+require("dotenv").config();
 import User from "../models/user.model";
 import shortId from "shortid";
-export default function signup(req, res) {
+import jwt from "jsonwebtoken";
+import expressJwt from "express-jwt";
+
+export const signup = (req, res) => {
   User.findOne({ email: req.body.email }).exec((err, user) => {
     //If user already exists then execute
     if (user) {
@@ -23,12 +27,57 @@ export default function signup(req, res) {
           error: err,
         });
       }
-      res.json({
+      /* res.json({
         user: success,
-      });
-      /*   res.json({
-        message: "Signup succesfull, please signin",
       }); */
+      res.json({
+        message: "Signup succesfull, please signin",
+      });
     });
   });
-}
+};
+
+export const signin = (req, res) => {
+  const { email, password } = req.body;
+  // check if user exist
+  User.findOne({ email }).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: "User with that email does not exist. Please signup.",
+      });
+    }
+    // authenticate
+    if (!user.authenticate(password)) {
+      return res.status(400).json({
+        error: "Email and password do not match.",
+      });
+    }
+    // generate a token and send to client
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "1d",
+    });
+
+    res.cookie("token", token, { expiresIn: "1d" });
+    const { _id, username, name, email, role } = user;
+    return res.json({
+      token,
+      user: { _id, username, name, email, role },
+    });
+  });
+};
+
+export const signout = (req, res) => {
+  //the cookie is what makes the website work
+  //so when we clean the cookie then we finish it
+
+  res.clearCookie("token");
+  res.json({
+    message: "Signout success",
+  });
+};
+
+export const requireSignin = expressJwt({
+  secret: process.env.JWT_SECRET,
+  algorithms: ["HS256"], // added later
+  userProperty: "auth",
+});

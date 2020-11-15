@@ -1,21 +1,19 @@
-//Set up configuration
-require("dotenv").config();
-//Dependencies
 import express from "express";
 import next from "next";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import mongoose from "mongoose";
+//bring routes
+require("dotenv").config();
+import blogRoutes from "./routes/blog.routes";
+import authRoutes from "./routes/auth.routes";
 //Required development environments
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
 const port = process.env.PORT || 3000;
 const db = process.env.MONGO_URL;
-//bring routes
-import blogRoutes from "./routes/blog.routes";
-import authRoutes from "./routes/auth.routes";
 
 //db database
 mongoose
