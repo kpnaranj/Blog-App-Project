@@ -5,7 +5,6 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../styles/global/theme";
 
-
 export default function MyApp(props) {
   const { Component, pageProps } = props;
 
@@ -20,7 +19,7 @@ export default function MyApp(props) {
   return (
     <Fragment>
       <Head>
-        <title>My page</title>
+        <title>Blog App pages</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
