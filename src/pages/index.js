@@ -19,7 +19,7 @@ export default function Home() {
       />
       <CardContent>
         <Typography variant="body2" component="p">
-          Welcome to the Next JS home page
+          Welcome to the Next JS home page, this is awesome
         </Typography>
       </CardContent>
     </Card>
