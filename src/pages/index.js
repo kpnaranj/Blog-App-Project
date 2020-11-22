@@ -1,7 +1,8 @@
-import React from "react";
+import { Fragment } from "react";
+import Layout from "../components/Layout";
 
 function Home() {
-  return <div>This is the Home Page</div>;
+  return <Layout>This is Home </Layout>;
 }
 
 export default Home;
