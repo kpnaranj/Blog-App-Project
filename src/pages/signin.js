@@ -1,14 +1,15 @@
-import React from "react";
+import { Fragment } from "react";
 import Layout from "../components/Layout";
 import Link from "next/link";
+import Signin_Component from "../components/auth/Signin_Component";
+
 function Sigin() {
   return (
-    <Layout>
-      <h1>This is the Signin page</h1>
-      <Link href="/">
-        <a>Return to Home</a>
-      </Link>
-    </Layout>
+    <Fragment>
+      <Layout>
+        <h1>This is the signin</h1>
+      </Layout>
+    </Fragment>
   );
 }
 
