@@ -7,6 +7,9 @@
 
 # testing
 /coverage
+# config 
+/next.config.js
+/config.js
 
 # next.js
 /.next/
