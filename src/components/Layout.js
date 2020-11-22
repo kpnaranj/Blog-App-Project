@@ -1,9 +1,10 @@
 import { Fragment } from "react";
+import Header from "../components/Header";
 
 function Layout({ children }) {
   return (
     <Fragment>
-      <p>Header</p>
+      <Header />
       {children}
       <p>Footer</p>
     </Fragment>
