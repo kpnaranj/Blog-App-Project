@@ -4,8 +4,8 @@ import { Fragment } from "react";
 
 const SignupComponent = () => {
   const [values, setValues] = useState({
-    name: "Kevin Narsg",
-    email: "kpnaranj@uwaterloo.ca",
+    name: "Kevin Narsh",
+    email: "kpnarsh@hotmail.com",
     password: "hello12345",
     error: "",
     loading: false,
