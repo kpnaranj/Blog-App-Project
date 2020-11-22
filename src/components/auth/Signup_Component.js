@@ -1,8 +1,10 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
+import { signup } from "../../actions/auth";
+import { Fragment } from "react";
 
-function Signup() {
+const SignupComponent = () => {
   const [values, setValues] = useState({
-    name: "Kevin Narsh",
+    name: "Kevin Narsg",
     email: "kpnaranj@uwaterloo.ca",
     password: "hello12345",
     error: "",
@@ -15,12 +17,38 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.table({ name, email, password, error, loading, message, showForm });
+    // console.table({ name, email, password, error, loading, message, showForm });
+    setValues({ ...values, loading: true, error: false });
+    const user = { name, email, password };
+
+    signup(user).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, loading: false });
+      } else {
+        setValues({
+          ...values,
+          name: "",
+          email: "",
+          password: "",
+          error: "",
+          loading: false,
+          message: data.message,
+          showForm: false,
+        });
+      }
+    });
   };
 
   const handleChange = (name) => (e) => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
+
+  const showLoading = () =>
+    loading ? <div className="alert alert-info">Loading...</div> : "";
+  const showError = () =>
+    error ? <div className="alert alert-danger">{error}</div> : "";
+  const showMessage = () =>
+    message ? <div className="alert alert-info">{message}</div> : "";
 
   const signupForm = () => {
     return (
@@ -34,6 +62,7 @@ function Signup() {
             placeholder="Type your name"
           />
         </div>
+
         <div className="form-group">
           <input
             value={email}
@@ -43,6 +72,7 @@ function Signup() {
             placeholder="Type your email"
           />
         </div>
+
         <div className="form-group">
           <input
             value={password}
@@ -52,6 +82,7 @@ function Signup() {
             placeholder="Type your password"
           />
         </div>
+
         <div>
           <button className="btn btn-primary">Signup</button>
         </div>
@@ -59,7 +90,14 @@ function Signup() {
     );
   };
 
-  return <Fragment>{signupForm()}</Fragment>;
-}
+  return (
+    <Fragment>
+      {showError()}
+      {showLoading()}
+      {showMessage()}
+      {showForm && signupForm()}
+    </Fragment>
+  );
+};
 
-export default Signup;
+export default SignupComponent;
