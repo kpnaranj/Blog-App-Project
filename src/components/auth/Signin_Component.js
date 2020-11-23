@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signin } from "../../actions/auth";
+import { signin, authenticate } from "../../actions/auth";
 import { Fragment } from "react";
 import Router from "next/router";
 
@@ -28,7 +28,9 @@ const SigninComponent = () => {
         // save user token to cookie
         // save user info to localstorage
         //authenticate user
-        Router.push(`/`);
+        authenticate(data, () => {
+          Router.push(`/`);
+        });
       }
     });
   };
@@ -68,7 +70,7 @@ const SigninComponent = () => {
         </div>
 
         <div>
-          <button className="btn btn-primary">Signup</button>
+          <button className="btn btn-primary">Signin</button>
         </div>
       </form>
     );

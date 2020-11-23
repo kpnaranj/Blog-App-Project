@@ -10,7 +10,8 @@
 # config 
 /next.config.js
 /config.js
-
+/.vscode
+/.history
 # next.js
 /.next/
 /out/
