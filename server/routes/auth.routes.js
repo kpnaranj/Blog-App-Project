@@ -11,6 +11,6 @@ import { runValidation } from "../validators";
 const router = express.Router();
 
 router.post("/signup", userSignupValidator, runValidation, signup);
-router.get("/signin", userSigninValidator, runValidation, signin);
+router.post("/signin", userSigninValidator, runValidation, signin);
 router.get('/signout', signout)
 export default router;
