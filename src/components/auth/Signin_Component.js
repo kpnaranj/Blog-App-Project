@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { signin, authenticate } from "../../actions/auth";
+import { useState, useEffect } from "react";
+import { signin, authenticate, isAuth } from "../../actions/auth";
 import { Fragment } from "react";
 import Router from "next/router";
 
@@ -14,6 +14,10 @@ const SigninComponent = () => {
   });
 
   const { email, password, error, loading, message, showForm } = values;
+
+  useEffect(()=>{
+      isAuth() && Router.push(`/`)
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
