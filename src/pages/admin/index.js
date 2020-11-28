@@ -1,12 +1,15 @@
 import React from "react";
 import Layout from "../../components/Layout";
+import Admin from "../../components/auth/Admin";
 
-function Admin() {
+function AdminUser() {
   return (
     <Layout>
-      <h2>Admin Dashboard</h2>
+      <Admin>
+        <h2>Admin Dashboard</h2>
+      </Admin>
     </Layout>
   );
 }
 
-export default Admin;
+export default AdminUser;
