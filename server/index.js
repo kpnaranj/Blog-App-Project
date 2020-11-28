@@ -9,6 +9,7 @@ require("dotenv").config();
 import blogRoutes from "./routes/blog.routes";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
+import categoryRoutes from "./routes/category.routes";
 //Required development environments
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
@@ -42,6 +43,7 @@ nextApp.prepare().then(() => {
   app.use("/api", blogRoutes);
   app.use("/api", authRoutes);
   app.use("/api", userRoutes);
+  app.use("/api", categoryRoutes);
 
   //Render the website
   app.get("*", (req, res) => {

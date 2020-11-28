@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 import crypto from "crypto";
 
-const UserSchema = new mongoose.Schema(
+const userSchema = new Schema(
   {
     username: {
       type: String,
@@ -54,7 +54,7 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 //Arrow function does not have own scope for this
-UserSchema.virtual("password")
+userSchema.virtual("password")
   .set(function (password) {
     //Creating A temporary variable called _password
     this._password = password;
@@ -68,7 +68,7 @@ UserSchema.virtual("password")
     return this._password;
   });
 
-UserSchema.methods = {
+userSchema.methods = {
   authenticate: function (plainText) {
     return this.encryptPassword(plainText) === this.hashed_password;
   },
@@ -87,4 +87,6 @@ UserSchema.methods = {
     return Math.round(new Date().valueOf() * Math.random()) + "";
   },
 };
-export default mongoose.model("User", UserSchema);
+
+const User = model("User", userSchema);
+export default User;
