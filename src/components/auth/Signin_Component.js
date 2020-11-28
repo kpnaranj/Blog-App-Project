@@ -15,9 +15,9 @@ const SigninComponent = () => {
 
   const { email, password, error, loading, message, showForm } = values;
 
-  useEffect(()=>{
-      isAuth() && Router.push(`/`)
-  }, [])
+  useEffect(() => {
+    isAuth() && Router.push(`/`);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +33,11 @@ const SigninComponent = () => {
         // save user info to localstorage
         //authenticate user
         authenticate(data, () => {
-          Router.push(`/`);
+          if (isAuth() && isAuth().role === 1) {
+            Router.push("/admin");
+          } else {
+            Router.push("/user");
+          }
         });
       }
     });
