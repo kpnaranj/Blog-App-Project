@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../../components/Layout";
 import Admin from "../../../components/auth/Admin";
+import Category from "../../../components/crud/Category";
 import Link from "next/link";
 
 function CategoryTag() {
@@ -13,7 +14,7 @@ function CategoryTag() {
               <h2>Manage Categories and Tags</h2>
             </div>
             <div className="col-md-6">
-              <p>Categories</p>
+              <Category />
             </div>
             <div className="col-md-6">
               <p>Tags</p>

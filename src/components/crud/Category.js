@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import { getCookie } from "../../actions/auth";
@@ -83,9 +83,9 @@ const Category = () => {
         setValues({
           ...values,
           error: false,
-          success: false,
+          success: true,
           name: "",
-          removed: !removed,
+          removed: removed,
           reload: !reload,
         });
       }
@@ -145,7 +145,7 @@ const Category = () => {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       {showSuccess()}
       {showError()}
       {showRemoved()}
@@ -153,7 +153,7 @@ const Category = () => {
         {newCategoryFom()}
         {showCategories()}
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
