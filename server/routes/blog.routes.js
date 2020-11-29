@@ -1,10 +1,11 @@
 //dependencies
 import express from "express";
 //external dependecies
-import blogCtrl from "../controllers/blog.controller";
+import { create } from "../controllers/blog.controller";
+import { requireSignin, adminMiddleware } from "../controllers/auth.controller";
 //router
 const router = express.Router();
 
-router.get("/", blogCtrl.time);
+router.post("/blog", requireSignin, adminMiddleware, create);
 
 export default router;
