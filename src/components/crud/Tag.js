@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import { getCookie } from "../../actions/auth";
@@ -81,9 +81,9 @@ const Tag = () => {
         setValues({
           ...values,
           error: false,
-          success: false,
+          success: true,
           name: "",
-          removed: !removed,
+          removed: removed,
           reload: !reload,
         });
       }
@@ -143,7 +143,7 @@ const Tag = () => {
   );
 
   return (
-    <React.Fragment>
+    <Fragment>
       {showSuccess()}
       {showError()}
       {showRemoved()}
@@ -151,7 +151,7 @@ const Tag = () => {
         {newTagFom()}
         {showTags()}
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
