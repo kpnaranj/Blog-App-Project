@@ -1,21 +1,17 @@
 import React from "react";
 import Layout from "../../../components/Layout";
 import Admin from "../../../components/auth/Admin";
-import Category from "../../../components/crud/Category";
 import Tag from "../../../components/crud/Tag";
 import Link from "next/link";
 
-function CategoryTag() {
+function Tags() {
   return (
     <Layout>
       <Admin>
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12 pt-5 pb-5">
-              <h2>Manage Categories and Tags</h2>
-            </div>
-            <div className="col-md-6">
-              <Category />
+              <h2>Manage Tags</h2>
             </div>
             <div className="col-md-6">
               <Tag />
@@ -27,4 +23,4 @@ function CategoryTag() {
   );
 }
 
-export default CategoryTag;
+export default Tags;
