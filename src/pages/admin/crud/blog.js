@@ -10,12 +10,12 @@ function Blog() {
       <Admin>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-12 pt-5 pb-5">
+            <div className="col-md-12 pt-5 pb-3">
               <h2>Create a new blog</h2>
             </div>
-            <div className="col-md-6">
-              <BlogCreate />
-            </div>
+          </div>
+          <div className="col-md-12">
+            <BlogCreate />
           </div>
         </div>
       </Admin>
