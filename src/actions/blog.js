@@ -2,8 +2,9 @@ import axios from "axios";
 import cookie from "js-cookie";
 import queryString from "querystring";
 import { isAuth } from "./auth";
+import { API } from "../../config";
 const axiosInstance = axios.create({
-  baseURL: `${process.env.API}`,
+  baseURL: `${API}`,
   timeout: 9000,
 });
 

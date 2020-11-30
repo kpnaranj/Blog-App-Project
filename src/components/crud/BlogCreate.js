@@ -46,6 +46,7 @@ const CreateBlog = ({ router }) => {
     title,
     hidePublishButton,
   } = values;
+  const token = getCookie("token");
 
   useEffect(() => {
     setValues({ ...values, formData: new FormData() });
@@ -75,7 +76,22 @@ const CreateBlog = ({ router }) => {
 
   const publishBlog = (e) => {
     e.preventDefault();
-    console.log("ready to publishBlog");
+    //console.log("ready to publishBlog");
+    createBlog(formData, token).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          title: "",
+          error: "",
+          success: ` A new blog titled "${data.title}" is created `,
+        });
+        setBody("");
+        setCategories([]);
+        setTags([]);
+      }
+    });
   };
 
   const handleChange = (name) => (e) => {
@@ -110,6 +126,22 @@ const CreateBlog = ({ router }) => {
     formData.set("categories", all);
   };
 
+  const handleTagsToggle = (t) => () => {
+    setValues({ ...values, error: "" });
+    const all = [...checkedTag];
+    // return the first index or -1
+    const clickedTag = checkedTag.indexOf(t);
+
+    if (clickedTag === -1) {
+      all.push(t);
+    } else {
+      all.splice(clickedTag, 1);
+    }
+    console.log(all);
+    setCheckedTag(all);
+    formData.set("tags", all);
+  };
+
   const showCategories = () => {
     return (
       categories &&
@@ -126,7 +158,11 @@ const CreateBlog = ({ router }) => {
     return (
       tags &&
       tags.map((t, i) => (
-        <li key={i} className="list-unstyled">
+        <li
+          onChange={handleTagsToggle(t._id)}
+          key={i}
+          className="list-unstyled"
+        >
           <input type="checkbox" className="mr-2" />
           <label className="form-check-label">{t.name}</label>
         </li>
@@ -182,6 +218,25 @@ const CreateBlog = ({ router }) => {
         </div>
 
         <div className="col-md-4">
+          <div>
+            <div className="form-group pb-2">
+              <h5>Feautured image</h5>
+              <hr />
+              <div>
+                <small className="text-muted">Max size: 1mb</small>
+              </div>
+
+              <label className="btn btn-outline-info">
+                Upload featured image{" "}
+                <input
+                  onChange={handleChange("photo")}
+                  type="file"
+                  accept="image/*"
+                  hidden
+                />
+              </label>
+            </div>
+          </div>
           <div>
             <h5>Categories</h5>
             <hr />
